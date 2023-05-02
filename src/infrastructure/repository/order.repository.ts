@@ -7,17 +7,19 @@ export default class OrderRepository {
     await OrderModel.create(
       {
         id: entity.id,
-        customerId: entity.customerId,
+        customer_id: entity.customerId,
         total: entity.total(),
         items: entity.items.map((item) => ({
           id: item.id,
           name: item.name,
           price: item.price,
-          productId: item.productId,
+          product_id: item.productId,
           quantity: item.quantity,
         })),
       },
-      { include: [{ model: OrderItemModel }] }
+      {
+        include: [{ model: OrderItemModel }],
+      }
     );
   }
 }
